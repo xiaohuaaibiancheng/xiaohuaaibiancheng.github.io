@@ -21,6 +21,56 @@
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --font-sans: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'Fira Code', monospace;
+  --navbar-bg: rgba(10, 10, 15, 0.85);
+  --mobile-menu-bg: rgba(10, 10, 15, 0.98);
+  --skill-tag-bg: rgba(108, 92, 231, 0.08);
+  --skill-tag-border: rgba(108, 92, 231, 0.12);
+  --project-tag-bg: rgba(255, 255, 255, 0.04);
+  --project-visibility-bg: rgba(255, 255, 255, 0.06);
+  --btn-outline-hover-bg: rgba(255, 255, 255, 0.05);
+  --section-tag-bg: rgba(108, 92, 231, 0.1);
+  --section-tag-border: rgba(108, 92, 231, 0.15);
+  --about-icon-bg: rgba(108, 92, 231, 0.1);
+  --hero-badge-bg: rgba(108, 92, 231, 0.1);
+  --hero-badge-border: rgba(108, 92, 231, 0.2);
+  --nav-link-hover-bg: rgba(108, 92, 231, 0.1);
+  --project-icon-bg: rgba(108, 92, 231, 0.1);
+  --project-arrow-hover-bg: rgba(108, 92, 231, 0.1);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --bg-primary: #f5f5fa;
+  --bg-secondary: #eeeef4;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f0f8;
+  --text-primary: #1a1a2e;
+  --text-secondary: #5a5a7a;
+  --text-muted: #8888a0;
+  --accent: #6c5ce7;
+  --accent-light: #5a4bd5;
+  --accent-glow: rgba(108, 92, 231, 0.2);
+  --gradient-1: linear-gradient(135deg, #6c5ce7 0%, #5a4bd5 50%, #4a9eff 100%);
+  --gradient-2: linear-gradient(135deg, #fd79a8 0%, #6c5ce7 100%);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.15);
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
+  --navbar-bg: rgba(245, 245, 250, 0.85);
+  --mobile-menu-bg: rgba(245, 245, 250, 0.98);
+  --skill-tag-bg: rgba(108, 92, 231, 0.06);
+  --skill-tag-border: rgba(108, 92, 231, 0.1);
+  --project-tag-bg: rgba(0, 0, 0, 0.04);
+  --project-visibility-bg: rgba(0, 0, 0, 0.06);
+  --btn-outline-hover-bg: rgba(0, 0, 0, 0.03);
+  --section-tag-bg: rgba(108, 92, 231, 0.08);
+  --section-tag-border: rgba(108, 92, 231, 0.12);
+  --about-icon-bg: rgba(108, 92, 231, 0.08);
+  --hero-badge-bg: rgba(108, 92, 231, 0.08);
+  --hero-badge-border: rgba(108, 92, 231, 0.15);
+  --nav-link-hover-bg: rgba(108, 92, 231, 0.08);
+  --project-icon-bg: rgba(108, 92, 231, 0.08);
+  --project-arrow-hover-bg: rgba(108, 92, 231, 0.08);
 }
 
 /* ===== Reset & Base ===== */
@@ -74,7 +124,7 @@ a {
 }
 
 .navbar.scrolled {
-  background: rgba(10, 10, 15, 0.85);
+  background: var(--navbar-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
@@ -133,7 +183,7 @@ a {
 .nav-link:hover,
 .nav-link.active {
   color: var(--text-primary);
-  background: rgba(108, 92, 231, 0.1);
+  background: var(--nav-link-hover-bg);
 }
 
 .nav-link.active {
@@ -250,8 +300,8 @@ a {
   gap: 8px;
   padding: 8px 20px;
   border-radius: 100px;
-  background: rgba(108, 92, 231, 0.1);
-  border: 1px solid rgba(108, 92, 231, 0.2);
+  background: var(--hero-badge-bg);
+  border: 1px solid var(--hero-badge-border);
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--accent-light);
@@ -343,7 +393,7 @@ a {
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--btn-outline-hover-bg);
   border-color: var(--accent);
   transform: translateY(-2px);
 }
@@ -454,8 +504,8 @@ a {
   display: inline-block;
   padding: 6px 16px;
   border-radius: 100px;
-  background: rgba(108, 92, 231, 0.1);
-  border: 1px solid rgba(108, 92, 231, 0.15);
+  background: var(--section-tag-bg);
+  border: 1px solid var(--section-tag-border);
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--accent-light);
@@ -522,7 +572,7 @@ a {
   width: 56px;
   height: 56px;
   border-radius: 14px;
-  background: rgba(108, 92, 231, 0.1);
+  background: var(--about-icon-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -595,8 +645,8 @@ a {
 .skill-tag {
   padding: 8px 16px;
   border-radius: 8px;
-  background: rgba(108, 92, 231, 0.08);
-  border: 1px solid rgba(108, 92, 231, 0.12);
+  background: var(--skill-tag-bg);
+  border: 1px solid var(--skill-tag-border);
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-secondary);
@@ -694,7 +744,7 @@ a {
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  background: rgba(108, 92, 231, 0.1);
+  background: var(--project-icon-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -714,7 +764,7 @@ a {
 
 .project-card:hover .project-arrow {
   color: var(--accent-light);
-  background: rgba(108, 92, 231, 0.1);
+  background: var(--project-arrow-hover-bg);
   transform: translate(2px, -2px);
 }
 
@@ -731,7 +781,7 @@ a {
   font-size: 0.65rem;
   padding: 2px 8px;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--project-visibility-bg);
   color: var(--text-muted);
   font-weight: 500;
   text-transform: uppercase;
@@ -774,7 +824,7 @@ a {
 .project-tag {
   padding: 4px 10px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--project-tag-bg);
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--text-muted);
@@ -946,7 +996,7 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(10, 10, 15, 0.98);
+    background: var(--mobile-menu-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
@@ -1014,4 +1064,69 @@ a {
     width: 100%;
     max-width: 280px;
   }
+}
+
+/* ===== Theme & Lang Toggle Buttons ===== */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-toggle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  padding: 0;
+  line-height: 1;
+}
+
+.nav-toggle-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+  background: var(--nav-link-hover-bg);
+}
+
+.nav-toggle-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.lang-btn {
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  letter-spacing: 0.5px;
+}
+
+/* Light theme: adjust floating shapes opacity */
+[data-theme="light"] .floating-shape {
+  opacity: 0.08;
+}
+
+[data-theme="light"] .hero-badge .badge-dot {
+  background: #00b894;
+}
+
+/* Transition for theme switch */
+body,
+.navbar,
+.about-card,
+.skill-category,
+.project-card,
+.contact-card,
+.skill-tag,
+.section-tag,
+.hero-badge,
+.nav-link {
+  transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }

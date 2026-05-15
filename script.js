@@ -1,3 +1,154 @@
+// ===== i18n Translations =====
+const i18n = {
+  zh: {
+    nav_home: '首页',
+    nav_about: '关于',
+    nav_skills: '技能',
+    nav_projects: '项目',
+    nav_contact: '联系',
+    hero_badge: 'AI × 创造力',
+    hero_title_line: '你好，我是',
+    hero_name: '小华爱编程',
+    hero_subtitle: '用 AI 赋能编程，用代码创造未来。<br>探索人工智能与软件开发的无限可能。',
+    hero_cta_projects: '查看项目',
+    hero_cta_contact: '联系我',
+    stat_projects: '开源项目',
+    stat_fields: '技术领域',
+    stat_passion: '热情投入',
+    scroll_down: '向下滚动',
+    about_tag: '关于我',
+    about_title: '探索 AI 与编程的交汇点',
+    about_fullstack_title: '全栈开发',
+    about_fullstack_desc: '从前端到后端，从 Web 到嵌入式，热爱用代码解决实际问题，追求优雅高效的工程实现。',
+    about_ai_title: 'AI 探索',
+    about_ai_desc: '深入研究大语言模型、具身智能、RAG 技术等前沿领域，将 AI 能力融入实际产品开发。',
+    about_opensource_title: '开源贡献',
+    about_opensource_desc: '积极参与开源社区，分享技术实践和心得，相信开源的力量能让技术走得更远。',
+    skills_tag: '技术栈',
+    skills_title: '技能与工具',
+    skills_lang: '编程语言',
+    skills_ai: 'AI / ML',
+    skills_framework: '框架 & 工具',
+    skills_other: '其他',
+    skill_embodied: '具身智能',
+    skill_robot: '机器人',
+    skill_cv: '计算机视觉',
+    skill_network: '网络检测',
+    skill_outsource: '服务外包',
+    projects_tag: '项目展示',
+    projects_title: '开源项目',
+    projects_subtitle: '自动同步 GitHub 仓库，新项目即时展示',
+    contact_tag: '联系我',
+    contact_title: '一起探索未来',
+    contact_text: '如果你对 AI 编程、具身智能或开源项目感兴趣，欢迎与我联系交流！',
+    footer_brand: '小华爱编程',
+    footer_text: '用代码创造未来，用 AI 改变世界。',
+    footer_copyright: '© 2026 小华爱编程. All rights reserved.',
+    loading_projects: '正在加载项目...',
+    load_error: '加载失败，请刷新页面重试',
+    no_desc: '暂无项目描述',
+    today: '今天',
+    days_ago: ' 天前',
+    months_ago: ' 个月前',
+    years_ago: ' 年前',
+  },
+  en: {
+    nav_home: 'Home',
+    nav_about: 'About',
+    nav_skills: 'Skills',
+    nav_projects: 'Projects',
+    nav_contact: 'Contact',
+    hero_badge: 'AI × Creativity',
+    hero_title_line: "Hello, I'm",
+    hero_name: 'XiaoHua AiBianCheng',
+    hero_subtitle: 'Empowering coding with AI, creating the future with code.<br>Exploring the infinite possibilities of AI and software development.',
+    hero_cta_projects: 'View Projects',
+    hero_cta_contact: 'Contact Me',
+    stat_projects: 'Open Source',
+    stat_fields: 'Tech Fields',
+    stat_passion: 'Passion',
+    scroll_down: 'Scroll Down',
+    about_tag: 'About Me',
+    about_title: 'Where AI Meets Programming',
+    about_fullstack_title: 'Full Stack Dev',
+    about_fullstack_desc: 'From frontend to backend, from Web to embedded — passionate about solving real-world problems with code, pursuing elegant and efficient engineering.',
+    about_ai_title: 'AI Exploration',
+    about_ai_desc: 'Deep diving into LLMs, embodied intelligence, RAG, and other cutting-edge fields, integrating AI capabilities into real product development.',
+    about_opensource_title: 'Open Source',
+    about_opensource_desc: 'Actively contributing to open source communities, sharing tech practices and insights — believing open source takes technology further.',
+    skills_tag: 'Tech Stack',
+    skills_title: 'Skills & Tools',
+    skills_lang: 'Languages',
+    skills_ai: 'AI / ML',
+    skills_framework: 'Frameworks & Tools',
+    skills_other: 'Other',
+    skill_embodied: 'Embodied AI',
+    skill_robot: 'Robotics',
+    skill_cv: 'Computer Vision',
+    skill_network: 'Network Detection',
+    skill_outsource: 'Outsourcing',
+    projects_tag: 'Showcase',
+    projects_title: 'Open Source Projects',
+    projects_subtitle: 'Auto-synced from GitHub — new repos appear instantly',
+    contact_tag: 'Contact',
+    contact_title: "Let's Explore the Future",
+    contact_text: "If you're interested in AI programming, embodied intelligence, or open source, feel free to reach out!",
+    footer_brand: 'XiaoHua AiBianCheng',
+    footer_text: 'Creating the future with code, changing the world with AI.',
+    footer_copyright: '© 2026 XiaoHua AiBianCheng. All rights reserved.',
+    loading_projects: 'Loading projects...',
+    load_error: 'Failed to load. Please refresh the page.',
+    no_desc: 'No description',
+    today: 'Today',
+    days_ago: ' days ago',
+    months_ago: ' months ago',
+    years_ago: ' years ago',
+  }
+};
+
+let currentLang = localStorage.getItem('lang') || 'zh';
+let currentTheme = localStorage.getItem('theme') || 'dark';
+
+// ===== Apply Translations =====
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang][key]) {
+      el.innerHTML = i18n[lang][key];
+    }
+  });
+
+  // Update lang toggle button text
+  const langBtn = document.getElementById('langToggle');
+  if (langBtn) langBtn.textContent = lang === 'zh' ? 'EN' : '中';
+
+  // Re-render project cards if they exist (for dynamic content)
+  if (window._cachedRepos) {
+    renderRepos(window._cachedRepos);
+  }
+}
+
+// ===== Theme Toggle =====
+function applyTheme(theme) {
+  currentTheme = theme;
+  localStorage.setItem('theme', theme);
+  document.documentElement.setAttribute('data-theme', theme);
+
+  const sunIcon = document.getElementById('themeIconSun');
+  const moonIcon = document.getElementById('themeIconMoon');
+  if (theme === 'light') {
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
+  } else {
+    sunIcon.style.display = 'block';
+    moonIcon.style.display = 'none';
+  }
+}
+
 // ===== Navigation =====
 const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('navToggle');
@@ -116,10 +267,11 @@ function getLangColor(lang) {
 function timeAgo(dateStr) {
   const diff = Date.now() - new Date(dateStr).getTime();
   const days = Math.floor(diff / 86400000);
-  if (days === 0) return '今天';
-  if (days < 30) return days + ' 天前';
-  if (days < 365) return Math.floor(days / 30) + ' 个月前';
-  return Math.floor(days / 365) + ' 年前';
+  const t = i18n[currentLang];
+  if (days === 0) return t.today;
+  if (days < 30) return days + t.days_ago;
+  if (days < 365) return Math.floor(days / 30) + t.months_ago;
+  return Math.floor(days / 365) + t.years_ago;
 }
 
 function createCard(repo) {
@@ -129,6 +281,7 @@ function createCard(repo) {
   card.rel = 'noopener';
   card.className = 'project-card';
 
+  const t = i18n[currentLang];
   const visLabel = repo.private ? 'Private' : 'Public';
   const langHtml = repo.language
     ? `<span class="project-meta-item"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${getLangColor(repo.language)}"></span>${repo.language}</span>`
@@ -150,7 +303,7 @@ function createCard(repo) {
       </div>
     </div>
     <h3 class="project-title">${repo.name}<span class="project-visibility">${visLabel}</span></h3>
-    <p class="project-desc">${repo.description || '暂无项目描述'}</p>
+    <p class="project-desc">${repo.description || t.no_desc}</p>
     <div class="project-meta">
       ${langHtml}${starsHtml}${forksHtml}
       <span class="project-meta-item" style="margin-left:auto">${timeAgo(repo.updated_at)}</span>
@@ -162,8 +315,17 @@ function createCard(repo) {
   return card;
 }
 
+function renderRepos(repos) {
+  carousel.innerHTML = '';
+  const fragment = document.createDocumentFragment();
+  repos.forEach(repo => fragment.appendChild(createCard(repo)));
+  carousel.appendChild(fragment);
+  initCarousel();
+}
+
 async function loadRepos() {
-  carousel.innerHTML = '<div class="project-loading"><div class="spinner"></div>正在加载项目...</div>';
+  const t = i18n[currentLang];
+  carousel.innerHTML = `<div class="project-loading"><div class="spinner"></div>${t.loading_projects}</div>`;
 
   try {
     const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`);
@@ -173,18 +335,13 @@ async function loadRepos() {
     // Sort by updated_at descending
     repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
-    carousel.innerHTML = '';
+    // Cache for language switch
+    window._cachedRepos = repos;
 
-    // Create cards for all repos
-    const fragment = document.createDocumentFragment();
-    repos.forEach(repo => fragment.appendChild(createCard(repo)));
-    carousel.appendChild(fragment);
-
-    // Start auto-scroll carousel
-    initCarousel();
+    renderRepos(repos);
   } catch (err) {
     console.error('Failed to load repos:', err);
-    carousel.innerHTML = '<div class="project-loading">加载失败，请刷新页面重试</div>';
+    carousel.innerHTML = `<div class="project-loading">${i18n[currentLang].load_error}</div>`;
   }
 }
 
@@ -247,7 +404,6 @@ function initCarousel() {
     const dx = startX - e.clientX;
     scrollPos = dragStartPos + dx;
     const origW = getOriginalWidth();
-    // Wrap
     while (scrollPos < 0) scrollPos += origW;
     while (scrollPos >= origW) scrollPos -= origW;
   });
@@ -256,7 +412,6 @@ function initCarousel() {
     if (isDragging) {
       isDragging = false;
       carousel.classList.remove('dragging');
-      // Don't resume auto-scroll immediately; let mouseleave handle it
     }
   });
 
@@ -282,6 +437,19 @@ function initCarousel() {
     isPaused = false;
   });
 }
+
+// ===== Init Theme & Lang =====
+document.getElementById('themeToggle').addEventListener('click', () => {
+  applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+});
+
+document.getElementById('langToggle').addEventListener('click', () => {
+  applyLang(currentLang === 'zh' ? 'en' : 'zh');
+});
+
+// Apply saved preferences on load
+applyTheme(currentTheme);
+applyLang(currentLang);
 
 // Load repos on page load
 loadRepos();
