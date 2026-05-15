@@ -1,22 +1,22 @@
 [
   {
+    "name": "blog",
+    "html_url": "https://github.com/xiaohuaaibiancheng/blog",
+    "description": "📝 Memento Mori 个人博客 — 相信美好的事情终会发生，记录技术思考与生活感悟",
+    "language": "HTML",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "updated_at": "2026-05-15T06:38:16Z",
+    "default_branch": "main"
+  },
+  {
     "name": "xiaohuaaibiancheng.github.io",
     "html_url": "https://github.com/xiaohuaaibiancheng/xiaohuaaibiancheng.github.io",
     "description": "🌸 小华爱编程个人主页 — 用 AI 赋能编程，用代码创造未来。支持深色/浅色主题切换与中英文国际化。",
     "language": "CSS",
     "stargazers_count": 0,
     "forks_count": 0,
-    "updated_at": "2026-05-15T06:28:52Z",
-    "default_branch": "main"
-  },
-  {
-    "name": "blog",
-    "html_url": "https://github.com/xiaohuaaibiancheng/blog",
-    "description": "📝 Memento Mori 个人博客 — 相信美好的事情终会发生，记录技术思考与生活感悟",
-    "language": "HTML",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "updated_at": "2026-05-15T06:21:50Z",
+    "updated_at": "2026-05-15T06:29:12Z",
     "default_branch": "main"
   },
   {
