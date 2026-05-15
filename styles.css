@@ -628,6 +628,8 @@ a {
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  color: inherit;
 }
 
 .project-card::after {
@@ -676,6 +678,23 @@ a {
 .project-links {
   display: flex;
   gap: 8px;
+}
+
+.project-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.project-card:hover .project-arrow {
+  color: var(--accent-light);
+  background: rgba(108, 92, 231, 0.1);
+  transform: translate(2px, -2px);
 }
 
 .project-link {
