@@ -363,8 +363,10 @@ function initCarousel() {
   let autoSpeed = 0.6; // px per frame
   let isPaused = false;
   let isDragging = false;
+  let hasMoved = false; // track if mouse actually moved enough to count as drag
   let startX = 0;
   let dragStartPos = 0;
+  const DRAG_THRESHOLD = 5; // px — below this is a click, above is a drag
 
   // Calculate the width of original set
   function getOriginalWidth() {
@@ -393,8 +395,8 @@ function initCarousel() {
   // Drag to scroll
   carousel.addEventListener('mousedown', e => {
     isDragging = true;
+    hasMoved = false;
     isPaused = true;
-    carousel.classList.add('dragging');
     startX = e.clientX;
     dragStartPos = scrollPos;
   });
@@ -402,16 +404,29 @@ function initCarousel() {
   window.addEventListener('mousemove', e => {
     if (!isDragging) return;
     const dx = startX - e.clientX;
-    scrollPos = dragStartPos + dx;
-    const origW = getOriginalWidth();
-    while (scrollPos < 0) scrollPos += origW;
-    while (scrollPos >= origW) scrollPos -= origW;
+    if (Math.abs(dx) > DRAG_THRESHOLD) {
+      if (!hasMoved) {
+        hasMoved = true;
+        carousel.classList.add('dragging'); // block pointer-events on cards
+      }
+    }
+    if (hasMoved) {
+      scrollPos = dragStartPos + dx;
+      const origW = getOriginalWidth();
+      while (scrollPos < 0) scrollPos += origW;
+      while (scrollPos >= origW) scrollPos -= origW;
+    }
   });
 
-  window.addEventListener('mouseup', () => {
+  window.addEventListener('mouseup', e => {
     if (isDragging) {
       isDragging = false;
       carousel.classList.remove('dragging');
+      // If we actually dragged, prevent any lingering click on links
+      if (hasMoved) {
+        e.preventDefault();
+      }
+      // If !hasMoved, the click on <a> proceeds naturally
     }
   });
 
