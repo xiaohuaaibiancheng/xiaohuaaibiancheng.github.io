@@ -282,7 +282,6 @@ function createCard(repo) {
   card.className = 'project-card';
 
   const t = i18n[currentLang];
-  const visLabel = repo.private ? 'Private' : 'Public';
   const langHtml = repo.language
     ? `<span class="project-meta-item"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${getLangColor(repo.language)}"></span>${repo.language}</span>`
     : '';
@@ -302,7 +301,7 @@ function createCard(repo) {
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
       </div>
     </div>
-    <h3 class="project-title">${repo.name}<span class="project-visibility">${visLabel}</span></h3>
+    <h3 class="project-title">${repo.name}</h3>
     <p class="project-desc">${repo.description || t.no_desc}</p>
     <div class="project-meta">
       ${langHtml}${starsHtml}${forksHtml}
@@ -331,6 +330,9 @@ async function loadRepos() {
     const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`);
     if (!res.ok) throw new Error('API error');
     let repos = await res.json();
+
+    // Filter: only public repos
+    repos = repos.filter(r => !r.private);
 
     // Sort by updated_at descending
     repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
