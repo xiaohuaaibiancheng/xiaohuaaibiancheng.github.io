@@ -1,0 +1,92 @@
+[
+  {
+    "name": "xiaohuaaibiancheng.github.io",
+    "html_url": "https://github.com/xiaohuaaibiancheng/xiaohuaaibiancheng.github.io",
+    "description": "🌸 小华爱编程个人主页 — 用 AI 赋能编程，用代码创造未来。支持深色/浅色主题切换与中英文国际化。",
+    "language": "CSS",
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "updated_at": "2026-05-15T06:24:02Z",
+    "default_branch": "main"
+  },
+  {
+    "name": "blog",
+    "html_url": "https://github.com/xiaohuaaibiancheng/blog",
+    "description": "📝 Memento Mori 个人博客 — 相信美好的事情终会发生，记录技术思考与生活感悟",
+    "language": "HTML",
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "updated_at": "2026-05-15T06:21:50Z",
+    "default_branch": "main"
+  },
+  {
+    "name": "net_detect",
+    "html_url": "https://github.com/xiaohuaaibiancheng/net_detect",
+    "description": "🛡️ 网络流量安全溯源系统 — 基于 LSTM-ResNet 的网络流量异常检测与分类，支持实时抓包分析与可视化溯源",
+    "language": "JavaScript",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "updated_at": "2026-05-15T06:21:49Z",
+    "default_branch": "main"
+  },
+  {
+    "name": "service",
+    "html_url": "https://github.com/xiaohuaaibiancheng/service",
+    "description": "🔍 CredenceAI 多模态虚假新闻检测平台 — 融合AI生成检测、新闻可信度评估、传播特征分析与深度逻辑验证的四位一体治理体系",
+    "language": "HTML",
+    "stargazers_count": 2,
+    "forks_count": 0,
+    "updated_at": "2026-05-15T06:20:25Z",
+    "default_branch": "main"
+  },
+  {
+    "name": "xiaohuaaibiancheng",
+    "html_url": "https://github.com/xiaohuaaibiancheng/xiaohuaaibiancheng",
+    "description": "Config files for my GitHub profile.",
+    "language": "",
+    "stargazers_count": 1,
+    "forks_count": 0,
+    "updated_at": "2026-02-20T11:41:04Z",
+    "default_branch": "main"
+  },
+  {
+    "name": "-Tonypi-",
+    "html_url": "https://github.com/xiaohuaaibiancheng/-Tonypi-",
+    "description": "项目旨在 ​​赋予 Tonypi 机器人更强大的多模态交互能力​​，特别是在复杂指令理解、场景认知与行为模仿方面。",
+    "language": "Python",
+    "stargazers_count": 4,
+    "forks_count": 0,
+    "updated_at": "2026-02-15T12:03:18Z",
+    "default_branch": "main"
+  },
+  {
+    "name": "all-in-rag",
+    "html_url": "https://github.com/xiaohuaaibiancheng/all-in-rag",
+    "description": "🔍大模型应用开发实战一：RAG 技术全栈指南，在线阅读地址：https://datawhalechina.github.io/all-in-rag/",
+    "language": "",
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "updated_at": "2026-01-06T06:39:13Z",
+    "default_branch": "main"
+  },
+  {
+    "name": "Embodied-Intelligent-Imitation-Learning-Framework",
+    "html_url": "https://github.com/xiaohuaaibiancheng/Embodied-Intelligent-Imitation-Learning-Framework",
+    "description": "This is an open-source Embodied Intelligent Imitation Learning framework.",
+    "language": "Python",
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "updated_at": "2026-01-06T06:39:11Z",
+    "default_branch": "main"
+  },
+  {
+    "name": "homework",
+    "html_url": "https://github.com/xiaohuaaibiancheng/homework",
+    "description": "一些作业的练习",
+    "language": "Python",
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "updated_at": "2025-04-29T13:55:12Z",
+    "default_branch": "main"
+  }
+]

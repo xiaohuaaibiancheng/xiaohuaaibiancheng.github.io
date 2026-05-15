@@ -1,0 +1,54 @@
+name: Update Repos Data
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # 每6小时运行一次
+  workflow_dispatch: # 支持手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch repos data
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 获取公开仓库数据，只保留需要的字段以减小文件体积
+          curl -s -H "Authorization: token $GH_TOKEN" \
+            "https://api.github.com/users/xiaohuaaibiancheng/repos?per_page=100&sort=updated&type=public" | \
+            python3 -c "
+          import json, sys
+          repos = json.load(sys.stdin)
+          result = []
+          for r in repos:
+            if r.get('private'):
+              continue
+            result.append({
+              'name': r['name'],
+              'html_url': r['html_url'],
+              'description': r.get('description') or '',
+              'language': r.get('language') or '',
+              'stargazers_count': r.get('stargazers_count', 0),
+              'forks_count': r.get('forks_count', 0),
+              'updated_at': r['updated_at'],
+              'default_branch': r.get('default_branch', 'main'),
+            })
+          result.sort(key=lambda x: x['updated_at'], reverse=True)
+          with open('repos.json', 'w', encoding='utf-8') as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+          print(f'Updated {len(result)} repos')
+          "
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet repos.json && echo "No changes" && exit 0
+          git add repos.json
+          git commit -m "chore: auto-update repos data [skip ci]"
+          git push

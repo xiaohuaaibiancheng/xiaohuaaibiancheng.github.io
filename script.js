@@ -326,24 +326,59 @@ async function loadRepos() {
   const t = i18n[currentLang];
   carousel.innerHTML = `<div class="project-loading"><div class="spinner"></div>${t.loading_projects}</div>`;
 
-  try {
-    const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`);
-    if (!res.ok) throw new Error('API error');
+  async function tryLoadFromStaticJSON() {
+    const res = await fetch('repos.json');
+    if (!res.ok) throw new Error('static json error');
+    return await res.json();
+  }
+
+  async function tryLoadFromAPI() {
+    const CACHE_KEY = 'gh_repos_cache';
+    const CACHE_TTL = 30 * 60 * 1000; // 30 min
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      try {
+        const { ts, data } = JSON.parse(cached);
+        if (Date.now() - ts < CACHE_TTL) return data;
+      } catch (_) { /* ignore */ }
+    }
+    const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`, {
+      headers: { Accept: 'application/vnd.github.v3+json' }
+    });
+    if (!res.ok) throw new Error(`API ${res.status}`);
     let repos = await res.json();
-
-    // Filter: only public repos
     repos = repos.filter(r => !r.private);
-
-    // Sort by updated_at descending
     repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: repos }));
+    return repos;
+  }
 
-    // Cache for language switch
+  try {
+    // 1. Try static repos.json (auto-updated by GitHub Actions)
+    let repos = await tryLoadFromStaticJSON();
     window._cachedRepos = repos;
-
     renderRepos(repos);
-  } catch (err) {
-    console.error('Failed to load repos:', err);
-    carousel.innerHTML = `<div class="project-loading">${i18n[currentLang].load_error}</div>`;
+  } catch (_) {
+    try {
+      // 2. Fallback: try GitHub API with localStorage cache
+      let repos = await tryLoadFromAPI();
+      window._cachedRepos = repos;
+      renderRepos(repos);
+    } catch (err) {
+      console.error('Failed to load repos:', err);
+      // 3. Last resort: use expired cache
+      const CACHE_KEY = 'gh_repos_cache';
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        try {
+          const { data } = JSON.parse(cached);
+          window._cachedRepos = data;
+          renderRepos(data);
+          return;
+        } catch (_) { /* ignore */ }
+      }
+      carousel.innerHTML = `<div class="project-loading">${i18n[currentLang].load_error}</div>`;
+    }
   }
 }
 
