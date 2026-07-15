@@ -1,22 +1,22 @@
 [
   {
-    "name": "xiaohuaaibiancheng.github.io",
-    "html_url": "https://github.com/xiaohuaaibiancheng/xiaohuaaibiancheng.github.io",
-    "description": "🌸 小华爱编程个人主页 — 用 AI 赋能编程，用代码创造未来。支持深色/浅色主题切换与中英文国际化。",
-    "language": "CSS",
-    "stargazers_count": 0,
-    "forks_count": 0,
-    "updated_at": "2026-07-14T14:03:35Z",
-    "default_branch": "main"
-  },
-  {
     "name": "BidMind",
     "html_url": "https://github.com/xiaohuaaibiancheng/BidMind",
     "description": "",
     "language": "TypeScript",
     "stargazers_count": 0,
     "forks_count": 0,
-    "updated_at": "2026-05-23T06:59:11Z",
+    "updated_at": "2026-07-15T03:11:47Z",
+    "default_branch": "main"
+  },
+  {
+    "name": "xiaohuaaibiancheng.github.io",
+    "html_url": "https://github.com/xiaohuaaibiancheng/xiaohuaaibiancheng.github.io",
+    "description": "🌸 小华爱编程个人主页 — 用 AI 赋能编程，用代码创造未来。支持深色/浅色主题切换与中英文国际化。",
+    "language": "CSS",
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "updated_at": "2026-07-14T19:37:28Z",
     "default_branch": "main"
   },
   {
